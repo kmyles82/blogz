@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy 
 from datetime import datetime
 
@@ -15,13 +15,13 @@ class Blog(db.Model):
     date_posted = db.Column(db.DateTime)
     body = db.Column(db.Text)
 
-@app.route('/blog')
+@app.route('/')
 def index():
-    posts = Blog.query.order_by(Blog.date_posted.asc()).all()
+    posts = Blog.query.order_by(Blog.date_posted.desc()).all()
 
     return render_template('blog.html', posts=posts)
 
-@app.route('/post')
+@app.route('/post/<int:post_id>')
 def post(post_id):
     post = Blog.query.filter_by(id=post_id).one()
 
@@ -32,7 +32,7 @@ def add():
     return render_template('newpost.html')
 
 @app.route('/newpost', methods=['POST'])
-def addpost():
+def newpost():
     if request.method == 'POST':
         title = request.form['title']
         body = request.form['body']
@@ -41,12 +41,12 @@ def addpost():
             flash("Title or body cannot be empty")
             return render_template('newpost.html')
 
-    post = Blog(title=title,  body=body, date_posted=datetime.now())
+        post = Blog(title=title,  body=body, date_posted=datetime.now())
 
-    db.session.add(post)
-    db.session.commit()
+        db.session.add(post)
+        db.session.commit()
 
-    return redirect('blog')
+    return render_template('post.html', post=post)
 
 if __name__ == '__main__':
     app.run(debug=True)

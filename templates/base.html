@@ -2,14 +2,28 @@
 <html>
     <head>
         <title>{{title}}</title>
-        
+        <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
     </head>
 <body>
-    <a class="nav-link" href="/blog">Main Blog Page</a>
-    <a class="nav-link" href="/newpost">Add a Blog Entry</a>
-    
-    {% block content %}
-    {% endblock %}
+    <div class="container">
+        <ul>
+            <li><a class="nav-link" href="{{ url_for('index') }}">Main Blog Page</a></li>
+            <li><a class="nav-link" href="{{ url_for('newpost') }}">Add a Blog Entry</a></li>
+        </ul>
+        
+        {% block content %}
 
+        {% endblock %}
+    </div>
+    
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
 </body>
 </html>

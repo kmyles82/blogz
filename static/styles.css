@@ -1,0 +1,15 @@
+#blog_title{
+    text-align: center;
+}
+
+.nav-link{
+    color: #999;
+}
+
+.nav-link:visited{
+    color: #999;
+}
+
+ul{
+    list-style: none;
+}
