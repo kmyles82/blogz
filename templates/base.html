@@ -1,29 +1,36 @@
-<!doctype html>
-<html>
-    <head>
-        <title>{{title}}</title>
-        <!-- Bootstrap core CSS -->
-    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
-    <!-- Custom styles for this template -->
-    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
-    </head>
-<body>
-    <div class="container">
-        <ul>
-            <li><a class="nav-link" href="{{ url_for('index') }}">Main Blog Page</a></li>
-            <li><a class="nav-link" href="{{ url_for('newpost') }}">Add a Blog Entry</a></li>
-        </ul>
-        
-        {% block content %}
+<!DOCTYPE html>
 
-        {% endblock %}
-    </div>
+<html>
+
+  <head>
+
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <!-- STYLESHEETS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/bootstrap.min.css') }}">
     
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
-</body>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <nav class="header">
+
+        <h1><a href="/">Blogz!</a></h1>
+        <a href="/blog" class="left spacing">View All Posts</a>
+        <a href="/newpost"><i class="fa fa-pencil" aria-hidden="true"></i> New Post</a>
+        <a href="/logout" class="right"><i class="fa fa-sign-out"></i> Logout</a>
+        <a href="/login" class="right spacing"><i class="fa fa-sign-in"></i> Login</a>
+
+      </nav>
+      {% block content %}
+      {% endblock %}
+    </div>
+
+  </body>
+
 </html>
